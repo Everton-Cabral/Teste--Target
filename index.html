@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste Target</title>
+    <style>
+        body {
+            background-color: black;
+            color: #ddd;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background-color: #333;
+            border-radius: 10px;
+        }
+
+        h1, h2 {
+            color: #ddd;
+        }
+
+        button {
+            background-color: #2c98f0;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #1e6fd3;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 8px;
+            border-radius: 10px;
+            border: none;
+            background-color: #444;
+            color: #ddd;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #2c98f0;
+        }
+        .footer{
+            text-align: center;    
+        }
+        .email{
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+
+            <h1>Teste Target</h1>
+            <h2>1)</h2>
+            <button @click="q1()">Ver Resposta</button>
+            <span>Resposta: {{ resposta1 }}</span>
+            <h2>2)</h2>
+            <span>Insira um número</span><br/>
+            <input type="number" v-model="n">
+            <button @click="q2(n)">Verificar</button>
+            {{ resposta2 }} 
+            <h2>3)</h2>
+            a) 9.
+            b) 128.
+            c) 49.
+            d) 100.
+            e) 13.
+            f) 3.
+            <br/>
+            <h2>4)</h2>
+            Resposta: Os dois estarão na mesma distância de Ribeirão Preto, pois independente do ponto que se cruzarem, no momento do cruzamento a distância será a mesma para qualquer cidade.
+            <h2>5)</h2>
+            <span>Digite uma Palavra</span>
+            <input type="text" v-model="palavra">
+            <button @click="q5(palavra)">Inverter Palavra</button><br/>
+            Resposta:{{ resposta3 }}   
+        </div>       
+        <div class="footer">
+            <span class="email">Email: Cabralclarinetista@gmail.com </span>    
+            <span> <a target="_blank" href="https://meu-site-v956-occz2yabo-everton-cabral.vercel.app/">Veja meu Portfólio:</a>  </span> 
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+  el: '#app',
+  data: {
+    resposta1:'',
+    resposta2:'',
+    n:'',
+    fibonacci:'',
+    palavra:'',
+    resposta3:'',
+  },
+  methods:{
+   q1(){
+    var indice = 13;
+    var soma = 0;
+    var k = 0;
+    while(k<indice){
+        k = k + 1
+        soma = soma + k
+    }
+    this.resposta1 = soma
+   },
+   q2(params){
+   var contador = 1
+   this.fibonacci = [0,1]
+    while( contador < params){
+        i1 = this.fibonacci.length-1
+        i2 = this.fibonacci.length-2
+        var proximoNumero = this.fibonacci[i1] + this.fibonacci[i2]
+        this.fibonacci.push(proximoNumero)
+        contador = proximoNumero   
+    }  
+    if(proximoNumero == params || params == 0 || params == 1){
+        this.resposta2 = 'Este Número Pertence a sequência de Fibonacci'
+    } else{
+        this.resposta2 = 'Este Número NÂO Pertence a sequência de Fibonacci'
+    }
+   },
+   q5(params){
+    arraypalavra = params.split("")
+    this.resposta3 = '';
+    let contador = 0
+    let contador2 = arraypalavra.length - 1
+    while(contador < arraypalavra.length){
+        this.resposta3 = this.resposta3+arraypalavra[contador2]
+        contador++
+        contador2--
+    }
+   }
+  },
+
+})
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>
